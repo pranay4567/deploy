@@ -29,5 +29,5 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             docker stop myapp || true
             docker rm myapp || true
-            docker run -d --name myapp -p 3000:3000 myapp:latest
+            docker run -d --name myapp -p 3000:8080 myapp:latest
           EOF
