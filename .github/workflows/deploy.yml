@@ -21,9 +21,8 @@ jobs:
 
       - name: Build and send Docker image
         run: |
-          # Save Docker image as tar
           docker build -t myapp:latest .
-          docker save myapp:latest | bzip2 | ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'bunzip2 | docker load'
+          docker save myapp:latest | ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'docker load'
 
       - name: Run Docker container on EC2
         run: |
